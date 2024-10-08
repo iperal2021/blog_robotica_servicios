@@ -7,7 +7,7 @@ site_author: Iker Peral del Pino
 repo_url: "https://github.com/iperal2021/blog_robotica_servicios"
 edit_on_github: true
 github_docs_folder: true
-logo: "https://raw.githubusercontent.com/iperal2021/blog_robotica_servicios/main/docs/assets/img/"
+logo: "https://raw.githubusercontent.com/iperal2021/blog_robotica_servicios/main/docs/assets/img/python-logo-only.svg"
 sticky_navigation: true
 prev_next_buttons_location: bottom
 search_enabled: true
