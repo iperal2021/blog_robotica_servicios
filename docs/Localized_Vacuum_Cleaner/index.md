@@ -49,4 +49,29 @@ Once I have all the data, I can use the ecuation to convert **2D** coordinates t
 
 ### BSA
 
-The next step is to start with the algorithm and the planning of the route. 
+The next step is to start with the algorithm and the planning of the route. To start the planing I need to get the initial position of the robot and search for the nearest cell, wich will be my *Initial_cell*. To do this, I get the actual **2D** coordinate using the previous transformation matrix:
+
+```python
+def convert3Dto2D(x, y):
+  
+    rotation= np.array([ [-1, 0, 0, tx], [0, 1, 0, ty], [0, 0, 1, 0], [0, 0, 0, 1]])
+
+    coordinate = np.array([x, y, 0, 1])
+    
+    transformed_coord = np.dot(rotation, coordinate) * scale
+    
+    return transformed_coord
+```
+
+With the coordinate I can make the euclidean distance among my valid centers and the robot position and choose the nearest as the Initial cell.
+
+```python
+def euclid_distance(punto1, punto2):
+    return math.sqrt((punto1[0] - punto2[0])**2 + (punto1[1] - punto2[1])**2)
+    
+def found_init_point(point, centers):
+    init_point = min(centers, key=lambda center: euclid_distance(point, center))
+    return init_point
+```
+
+Now that I have the first cell of the Gridmap, I can start the real planing of the route. The directions to follow will be **North, Est, South, West**, in that order of preference. I have to implement the algorith that follow the directions and mark the cells as visited. At the same time I need to keep the free nearest point as a return point for when the robot is unable to move because is surrounded by visited cells, but it still has point that weren't visited from the *valid_centers* ist.
