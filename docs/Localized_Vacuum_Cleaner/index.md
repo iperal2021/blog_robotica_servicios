@@ -74,4 +74,25 @@ def found_init_point(point, centers):
     return init_point
 ```
 
-Now that I have the first cell of the Gridmap, I can start the real planing of the route. The directions to follow will be **North, Est, South, West**, in that order of preference. I have to implement the algorith that follow the directions and mark the cells as visited. At the same time I need to keep the free nearest point as a return point for when the robot is unable to move because is surrounded by visited cells, but it still has point that weren't visited from the *valid_centers* ist.
+Now that I have the first cell of the Gridmap, I can start the real planing of the route. The directions to follow will be **North, Est, South, West**, in that order of preference. I have to implement the algorith that follow the directions and mark the cells as visited. At the same time I need to keep the free nearest point as a return point for when the robot is unable to move because is surrounded by visited cells, but it still has point that weren't visited from the *valid_centers* list.
+
+The first aproach of the planning looks like this:
+
+<center>
+    <img src="assets/img/planing_first_attemp.png" width="600" height="350">
+</center>
+
+The yellow cells are the ones wich represets the route. The blue ones are the returning points for the robot when there aren't valid moves but there're still points in the *valid_centers* list.
+
+To debug the map more easily, I paint mor squeres, red for critic points and orange for initial cell.
+
+### Movement
+
+Once I have the path I can start to implement the movement. To have a smooth aproach to the different cells I have to use a PD controler for both linear and angular velocity. The way I have chosen to implement the movement follows these steps:
+
+1. I check if the route lenght is bigger than the lenght of my visited cells.
+2. If the next step is not a critic point, I move normaly depending on whether I have to turn or not.
+3. If the cell is a critic point, it have to go to the nearest return point.
+4. Once the robot is in the return point, the loop starts again.
+5. When all the cells ar visited the program is finished.
+
