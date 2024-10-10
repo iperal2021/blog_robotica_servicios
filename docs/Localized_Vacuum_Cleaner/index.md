@@ -96,3 +96,16 @@ Once I have the path I can start to implement the movement. To have a smooth apr
 4. Once the robot is in the return point, the loop starts again.
 5. When all the cells ar visited the program is finished.
 
+### Errors
+
+I encounter various errors during the exercise. The most significant:
+
+* The size of the map and the cells. At first I used the original size of the map, wich generates problem with the scale.
+
+* Transform matrix. I was unable to get the correct transformation matrix all over the exercise. At the time of start to move, the *3D* to *2D* coordinates didn't grow and decrease as expected. Due to this, the robot never gets to the next cell.
+
+* During the phase of debuging the map, the initial cell sometimes didn't get painted.
+  
+<center>
+    <img src="assets/img/new_map.png" width="600" height="350">
+</center>
