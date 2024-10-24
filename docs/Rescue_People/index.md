@@ -32,7 +32,10 @@ With this (X,Y) values I can move the drone to the location. Once there, I need 
 
 For the scan movement I used a function with a *FSM* like in the main loop. This "sub-state machine" alternate between three diferent moves: right, back and left.
 
-![sweep_move]()
+<center>
+    <img src="assets/img/sweep_move.png" width="500" height="300">
+</center>
+
 
 By testing the move I choose the values of the maximun and minimun x and y that contains the zone were the victims are.
 
@@ -40,9 +43,31 @@ By testing the move I choose the values of the maximun and minimun x and y that 
 
 Once the scan movement is ready, I have to perfom the recognition of faces to get the number and position of the posible victims. For this goal, I will create a fuction that will constantly check if there's a face in the image, and save the drone coordinates when one is on the image.
 
+From all the code of the documentation, the only lines used are these:
+
+```python
+frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        
+faces = face_cascade.detectMultiScale(frame_gray)
+    
+for (x,y,w,h) in faces:
+    center = (x + w//2, y + h//2)
+    frame = cv2.ellipse(frame, center, (w//2, h//2), 0, 0, 360, (255, 0, 255), 4)
+    faceROI = frame_gray[y:y+h,x:x+w]
+```
+
 The first try using the face cascade from openc vhas results like these ones:
 
-**** faltan imagenes ****
+<center>
+    <img src="assets/img/recognition_bad_1.png" width="500" height="300">
+</center>
+
+<center>
+    <img src="assets/img/recognition_bad_2.png" width="500" height="300">
+</center>
+<center>
+    <img src="assets/img/recognition_bad_3.png" width="500" height="300">
+</center>
 
 Due to the circular crop of the image, somtimes the cascade detecs all bodys as faces, so i decided to crop the image in squere form, to avoid this problem, but now, I have to implement a solution that turn the image until the face of victims are detected. I used the most common way among the python users and blogs from the web:
 
@@ -63,7 +88,12 @@ def rotate_img(image, angle):
 
 Now the detections look like this:
 
-**** subir imagenes****
+<center>
+    <img src="assets/img/recognition_good_1.png" width="500" height="300">
+</center>
+<center>
+    <img src="assets/img/recognition_good_2.png" width="500" height="300">
+</center>
 
 ### Return to Start point
 
