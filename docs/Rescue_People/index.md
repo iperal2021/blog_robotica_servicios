@@ -42,3 +42,6 @@ Once the scan movement is ready, I have to perfom the recognition of faces to ge
 
 The first try using the face cascade from openc vhas results like these ones:
 
+**** faltan imagenes ****
+
+Due to the circular crop of the image, somtimes the cascade detecs all bodys as faces, so i decided to crop the image in squere form, to avoid this problem, but now, I have to implement a solution that turn the image until the face of victims are detected
