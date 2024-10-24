@@ -14,7 +14,9 @@ The different pages of this blog contain the solution and the workflow used in e
 
 The first practice consists of implementing the algorithm used in a high-end vacuum cleaner that has self-location. The algorith used is *BSA*
 
-#### 2.
+#### 2. [Rescue People](https://iperal2021.github.io/blog_robotica_servicios/Rescue_People/)
+
+The second practice, with the goal of program a rescue drone wich have to check for victims and save their coordinates.
 
 #### 3.
 

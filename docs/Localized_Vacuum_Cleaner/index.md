@@ -4,7 +4,7 @@ title: Localized Vacuum Cleaner
 nav_exclude: false
 ---
 
-# Localized Vacuum Cleaner
+## Localized Vacuum Cleaner
 
 The first practice has the goal to to implement the logic of a navigation algorithm for an autonomous vacuum cleaner by making use of the location of the robot. The robot is equipped with a map and knows it’s current location in it. The main objective will be to cover the largest area of ​​a house using the programmed algorithm.
 

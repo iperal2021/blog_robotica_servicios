@@ -4,6 +4,8 @@ title: Rescue People
 nav_exclude: false
 ---
 
+## Rescue People
+
 The goal of this exercise is to implement the logic that allows a quadrotor to recognize the faces of lost people and save their locations in order to perform a subsequent rescue maneuver.
 
 The best form to face the problem is to divide the problem in two diferent parts: Navigation and face recognition.
