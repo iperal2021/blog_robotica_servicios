@@ -104,6 +104,36 @@ I want two reasons for the drone to return to the (0,0,0) coordinate:
 * **The scan is complete:** this means that the drone fly all over the rescue zone
 * **The battery is low:** I need to simulate a real drone wich have limited battery, so when a certain time has passed, the drone will return to charge.
 
+For the first one, I only create an state in wich the drone only goes to the position (0,0):
+
+```python
+def go2chargepoint():
+   # print('Volviendo')
+    HAL.set_cmd_pos(0, 0, z_search, az)
+
+# [...]
+
+if STATE == 2:
+    pos = HAL.get_position()
+    x_actual, y_actual, z_actual = pos[0], pos[1], pos[2]
+    if first_time:
+
+        print('#############################')
+        for position in face_detected_positions:
+            easting = easting_boat + position[0]
+            northing = northing_boat + position[1]
+            print('UTM position:', 'Easting =', easting, 'Northing =', northing)
+        print('#############################')
+
+        first_time = False
+
+    go2chargepoint()
+    
+    if (abs(x_actual) < 0.5) and (abs(y_actual) < 0.5):
+        HAL.land()
+```
+
+With the second one, although easy, I have problems to implement it, so I decided to discard It from the final version due to lack of time.
 
 ### Video
 
@@ -120,3 +150,9 @@ This version save every drone position when detects faces, given at the end a ve
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/0xeXvmkf8Ls/0.jpg)](https://youtu.be/0xeXvmkf8Ls "Drone execution 2")
 
 > Youtube URL if not displayed: [https://youtu.be/0xeXvmkf8Ls](https://youtu.be/0xeXvmkf8Ls)
+
+* Movement + face recognition + come back to startpoint + one coordinate per victim
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/yMSBCW1hkQs/0.jpg)](https://youtu.be/yMSBCW1hkQs "Drone execution 2")
+
+> Youtube URL if not displayed: [https://youtu.be/yMSBCW1hkQs](https://youtu.be/yMSBCW1hkQs)
