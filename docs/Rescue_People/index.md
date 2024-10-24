@@ -107,6 +107,14 @@ I want two reasons for the drone to return to the (0,0,0) coordinate:
 
 * Movement + face recognition + come back to startpoint
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/qtKFhZBkIrI/0.jpg)](https://youtu.be/qtKFhZBkIrI "Drone execution")
+This version save every drone position when detects faces, given at the end a very large list
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/qtKFhZBkIrI/0.jpg)](https://youtu.be/qtKFhZBkIrI "Drone execution 1")
 
 > Youtube URL if not displayed: [https://youtu.be/qtKFhZBkIrI](https://youtu.be/qtKFhZBkIrI)
+
+* Movement + face recognition + come back to startpoint + get only one coordinate per victim (failed)
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/0xeXvmkf8Ls/0.jpg)](https://youtu.be/0xeXvmkf8Ls "Drone execution 2")
+
+> Youtube URL if not displayed: [https://youtu.be/0xeXvmkf8Ls](https://youtu.be/0xeXvmkf8Ls)
