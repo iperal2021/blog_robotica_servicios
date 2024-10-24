@@ -44,13 +44,28 @@ The first try using the face cascade from openc vhas results like these ones:
 
 **** faltan imagenes ****
 
-Due to the circular crop of the image, somtimes the cascade detecs all bodys as faces, so i decided to crop the image in squere form, to avoid this problem, but now, I have to implement a solution that turn the image until the face of victims are detected.
+Due to the circular crop of the image, somtimes the cascade detecs all bodys as faces, so i decided to crop the image in squere form, to avoid this problem, but now, I have to implement a solution that turn the image until the face of victims are detected. I used the most common way among the python users and blogs from the web:
+
+```python
+def rotate_img(image, angle):
+  
+    (h, w) = image.shape[:2]
+    center = (w // 2, h // 2)
+    
+    rotation_matrix = cv2.getRotationMatrix2D(center, angle, 1.0)
+    rotated_image = cv2.warpAffine(image, rotation_matrix, (w, h))
+    
+    return rotated_image
+    
+```
+
+> This code can be seen in these webs: [OpenCV documentation](https://docs.opencv.org/4.x/da/d6e/tutorial_py_geometric_transformations.html), [stackoverflow](https://stackoverflow.com/questions/9041681/opencv-python-rotate-image-by-x-degrees-around-specific-point), [geekforgeeks](https://www.geeksforgeeks.org/python-opencv-cv2-rotate-method/), [educative](https://www.educative.io/answers/opencv-rotate-image), [Medium](https://medium.com/analytics-vidhya/rotating-images-with-opencv-and-imutils-99801cb4e03e) and much more
 
 Now the detections look like this:
 
 **** subir imagenes****
 
-#### Return to Start point
+### Return to Start point
 
 I want two reasons for the drone to return to the (0,0,0) coordinate:
 
