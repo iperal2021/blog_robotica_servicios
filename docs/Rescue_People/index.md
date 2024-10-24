@@ -102,3 +102,11 @@ I want two reasons for the drone to return to the (0,0,0) coordinate:
 * **The scan is complete:** this means that the drone fly all over the rescue zone
 * **The battery is low:** I need to simulate a real drone wich have limited battery, so when a certain time has passed, the drone will return to charge.
 
+
+### Video
+
+* Movement + face recognition + come back to startpoint
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/qtKFhZBkIrI/0.jpg)](https://youtu.be/qtKFhZBkIrI "Drone execution")
+
+> Youtube URL if not displayed: [https://youtu.be/qtKFhZBkIrI](https://youtu.be/qtKFhZBkIrI)
