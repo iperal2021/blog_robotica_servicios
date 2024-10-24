@@ -44,4 +44,16 @@ The first try using the face cascade from openc vhas results like these ones:
 
 **** faltan imagenes ****
 
-Due to the circular crop of the image, somtimes the cascade detecs all bodys as faces, so i decided to crop the image in squere form, to avoid this problem, but now, I have to implement a solution that turn the image until the face of victims are detected
+Due to the circular crop of the image, somtimes the cascade detecs all bodys as faces, so i decided to crop the image in squere form, to avoid this problem, but now, I have to implement a solution that turn the image until the face of victims are detected.
+
+Now the detections look like this:
+
+**** subir imagenes****
+
+#### Return to Start point
+
+I want two reasons for the drone to return to the (0,0,0) coordinate:
+
+* **The scan is complete:** this means that the drone fly all over the rescue zone
+* **The battery is low:** I need to simulate a real drone wich have limited battery, so when a certain time has passed, the drone will return to charge.
+
