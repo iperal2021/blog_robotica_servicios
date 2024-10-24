@@ -28,4 +28,17 @@ x = esting_people - esting_boat
 y = northing_people - northing_boat
 ```
 
-With this (X,Y) values I can move the drone to the location. Once there, I need to perform a sweep to find as many survivors as possible. To get a better control over the image I decided to crop the image into a circle.
+With this (X,Y) values I can move the drone to the location. Once there, I need to perform a sweep or scan of the zone to find as many survivors as possible. To get a better control over the image I decided to crop it into a circle.
+
+For the scan movement I used a function with a *FSM* like in the main loop. This "sub-state machine" alternate between three diferent moves: right, back and left.
+
+![sweep_move]()
+
+By testing the move I choose the values of the maximun and minimun x and y that contains the zone were the victims are.
+
+### Face recognition
+
+Once the scan movement is ready, I have to perfom the recognition of faces to get the number and position of the posible victims. For this goal, I will create a fuction that will constantly check if there's a face in the image, and save the drone coordinates when one is on the image.
+
+The first try using the face cascade from openc vhas results like these ones:
+
