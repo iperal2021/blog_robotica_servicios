@@ -33,7 +33,7 @@ With this (X,Y) values I can move the drone to the location. Once there, I need 
 For the scan movement I used a function with a *FSM* like in the main loop. This "sub-state machine" alternate between three diferent moves: right, back and left.
 
 <center>
-    <img src="assets/img/sweep_move.png" width="500" height="300">
+    <img src="assets/img/sweep_move.png" width="400" height="400">
 </center>
 
 
