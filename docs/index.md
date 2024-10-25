@@ -10,7 +10,7 @@ This blog aim is to get a report of the exercise for the subject 'Robótica de s
 
 The different pages of this blog contain the solution and the workflow used in each exercise just as different problems encountered.
 
-#### 1. [Localized vacum cleaner](https://iperal2021.github.io/blog_robotica_servicios/Localized%20Vacuum%20Cleaner/)
+#### 1. [Localized vacum cleaner](https://iperal2021.github.io/blog_robotica_servicios/Localized_Vacuum_Cleaner/)
 
 The first practice consists of implementing the algorithm used in a high-end vacuum cleaner that has self-location. The algorith used is *BSA*
 
