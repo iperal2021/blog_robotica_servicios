@@ -18,6 +18,6 @@ The first practice consists of implementing the algorithm used in a high-end vac
 
 The second practice, with the goal of program a rescue drone wich have to check for victims and save their coordinates.
 
-#### 3.
+#### 3. [Auto Parking]()
 
 > The exercises will appear in this page as they are done
