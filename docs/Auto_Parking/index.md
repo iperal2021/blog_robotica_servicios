@@ -53,4 +53,12 @@ def parse_laser_data(laser_data):
     return laser_polar, laser_xy
 ```
 
+Just before the `dist` variable of the code, I added an *if* sentence to avoid the *inf* measurements. This function allow me to solve two problems:
+
+* The linear movement
+* Check if there is space to park
+
+The easy of the two is to check if there is enough space to park, but I will explain it later.
+
+Using the coordinates I get from this function I'll create a straight line using the obstacles and then line up with the my *Y* axis to mantain a straihgt move. To do it I have to get the angle between my car and the obstacles. Then, with trigonometry and the straight line ecuation I calculate the slope to use the `atan`funtion to get the angle that is going to be used as the error for the *P* controller
 
