@@ -18,6 +18,6 @@ The first practice consists of implementing the algorithm used in a high-end vac
 
 The second practice, with the goal of program a rescue drone wich have to check for victims and save their coordinates.
 
-#### 3. [Auto Parking]()
+#### 3. [Auto Parking](https://iperal2021.github.io/blog_robotica_servicios/Auto_Parking/)
 
 > The exercises will appear in this page as they are done

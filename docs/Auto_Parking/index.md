@@ -60,5 +60,29 @@ Just before the `dist` variable of the code, I added an *if* sentence to avoid t
 
 The easy of the two is to check if there is enough space to park, but I will explain it later.
 
-Using the coordinates I get from this function I'll create a straight line using the obstacles and then line up with the my *Y* axis to mantain a straihgt move. To do it I have to get the angle between my car and the obstacles. Then, with trigonometry and the straight line ecuation I calculate the slope to use the `atan`funtion to get the angle that is going to be used as the error for the *P* controller
+Using the coordinates I get from this function I'll create a straight line using the obstacles and then line up with the my *Y* axis to mantain a straihgt move. To do it I have to get the angle between my car and the obstacles. Then, with trigonometry and the straight line ecuation I calculate the slope to use the `atan`funtion to get the angle (in radians) that is going to be used as the error for the *P* controller
 
+Here we can see how the car aligns itself even when starting turned.
+
+<center>
+    <img src="assets/img/alineacion.gif" width="300" height="500">
+</center>
+
+### Check for parking
+
+To check if there is a parking with enough space for the car I use the values *(X,Y)* that I get from the `parse_laser_data()`function. With the coordinates of the laser I create a virtual rectangle with my desired measurements and while It's not empty, the car continue moving straight. When the space is enough, there's no points inside the rectangle so the car can park there.
+
+```python
+def check_parking(right_laser_xy):
+    global parking_found
+    
+    right_side_obstacles = []
+    for point in right_laser_xy:
+        # If two check for points inside rectangle.
+        if 0 < point[0] < X_max and Y_min < point[1] < Y_max:
+            right_side_obstacles.append(point)
+    
+    # If right_side_obstacles is empty the car has found a parking
+    if not right_side_obstacles:
+        parking_found = True # Global Variable to controll FSM states
+```
