@@ -86,3 +86,18 @@ def check_parking(right_laser_xy):
     if not right_side_obstacles:
         parking_found = True # Global Variable to controll FSM states
 ```
+
+### Parking Maneuver
+
+Once the car has found a space to park It have to start the maneuver. The steps to follow to park correctly are these:
+
+1. start by placing the car to the right of the vehicle in front.
+
+> There is a possibility that there is no car in front, so we will move using time and distance
+
+1. Move backward and turn until the car is at 45º.
+
+1. Once in the correct orientation move backward and turn in the opposite direction as before until the car is prallel to the init orientation
+
+1. Check if there are enough distance in the front and in the back from possible obstacles and rectify if not.
+
