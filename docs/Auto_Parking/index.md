@@ -101,3 +101,16 @@ Once the car has found a space to park It have to start the maneuver. The steps 
 
 1. Check if there are enough distance in the front and in the back from possible obstacles and rectify if not.
 
+I use another *FSM* to controll the maneuver. Each step will be a step. The first one is to move the car forward until is enough space to the car to park. Then, after the desired time the car starts to move backward. To controll the angle I save the yaw just after the state var change value, and subtract it from the yaw of the car while moving.
+
+After some test I decided to use 40º.
+
+### Execution
+
+For the maneuver to be carried out correctly, we begin the execution by bringing the car closer to the right.
+
+https://youtu.be/vENShIurwb4
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/vENShIurwb4/0.jpg)](https://youtu.be/vENShIurwb4 "Auto Parking")
+
+> Youtube URL if not displayed: [https://youtu.be/vENShIurwb4](https://youtu.be/yMSBCW1hkQs)
