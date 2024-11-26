@@ -10,6 +10,15 @@ The objective of this practice is to implement the logic that allows a logistics
 
 Another goal is to leran how to use the *OMPL* library.
 
+## PLANING
+
+To start planing I need to get the conversion of the coordinate from *3D* to *2D*. This time the exercise give us all the measurements of the map in both spaces. Once the transformation is correct is time to learn wich functionas of *OMPL* I have to use and what does each one.
+
+Using the example from the documentation I can try to define the start point and the objetive coordinates to try the planner.
+
+## PLAN EXECUTION
+
+
 ## VIDEO
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/#####/0.jpg)]("Amazon Werehouse")
