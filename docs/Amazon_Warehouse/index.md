@@ -14,7 +14,9 @@ Another goal is to leran how to use the *OMPL* library.
 
 To start planing I need to get the conversion of the coordinate from *3D* to *2D*. This time the exercise give us all the measurements of the map in both spaces. Once the transformation is correct is time to learn wich functionas of *OMPL* I have to use and what does each one.
 
-Using the example from the documentation I can try to define the start point and the objetive coordinates to try the planner.
+Using the example from the documentation I can try to define the start point and the objetive coordinates to try the planner. The early tests show incorrect paths due to *OPML* use the X and Y coordinates the other way around, so where I use the X coordinate I have to use the Y, and vice versa.
+
+![path]()
 
 ## PLAN EXECUTION
 

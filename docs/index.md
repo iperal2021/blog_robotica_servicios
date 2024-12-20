@@ -20,6 +20,10 @@ The second practice, with the goal of program a rescue drone wich have to check 
 
 #### 3. [Auto Parking](https://iperal2021.github.io/blog_robotica_servicios/Auto_Parking/)
 
+Programingo the algorith for an automatic parking of an autonomous car.
+
 #### 4. [Amazon Warehouse]()
+
+#### 5. [Marker Based Visual Loc]()
 
 > The exercises will appear in this page as they are done
