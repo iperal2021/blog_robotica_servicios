@@ -49,11 +49,23 @@ For the *odom2tag* matrix I used the known coordinates given by the config file 
                         [np.sin(yaw), np.cos(yaw)]]
 ```
 
-For last I multiply both matrix to get as result the aproximated coordinates of the robot.
+For last I multiply both matrix to get as result the aproximated coordinates of the robot.To get the correct yaw value I use the same method as some classmates, calculating first the pitch and second the yaw:
+
+```python
+    pitch = math.atan2(
+            -odom2cam[2][0], math.sqrt(odom2cam[0][0] * odom2cam[0][0] + odom2cam[1][0] * odom2cam[1][0])
+        )
+    yaw = math.atan2(odom2cam[1][0] / math.cos(pitch), odom2cam[0][0] / math.cos(pitch)) + math.pi/2
+```
 
 ### NAVIGATION
 
-I choose a very simple form of navigatión wich chooses between a negative or positive angular speed to turn around randomly untill a new tag is detected.
+I choose a very simple form of navigatión wich chooses a positive angular speed between 0.2 an 1 to turn around untill a new tag is detected.
 
+### VIDEOS
 
-### VIDEO
+The execution of the exercise show as that when the tag detected is too far the coordinates has noise wich also appear when the robot detecs again after the detection is lost.
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/jmBgod1rsAg/0.jpg)](https://youtu.be/jmBgod1rsAg "Auto Parking")
+
+> Youtube URL if not displayed: [https://youtu.be/jmBgod1rsAg](https://youtu.be/jmBgod1rsAg)
