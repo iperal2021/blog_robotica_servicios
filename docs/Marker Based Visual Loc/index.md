@@ -69,3 +69,9 @@ The execution of the exercise show as that when the tag detected is too far the 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/jmBgod1rsAg/0.jpg)](https://youtu.be/jmBgod1rsAg "Auto Parking")
 
 > Youtube URL if not displayed: [https://youtu.be/jmBgod1rsAg](https://youtu.be/jmBgod1rsAg)
+
+Using a function wich calculates the mean between the current X and Y and the previus one I've been able to reduce the noise:
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/Rhf4Nc5tEMI/0.jpg)](https://youtu.be/Rhf4Nc5tEMI "Auto Parking")
+
+> Youtube URL if not displayed: [https://youtu.be/jmBgod1rsAg](https://youtu.be/Rhf4Nc5tEMI)
