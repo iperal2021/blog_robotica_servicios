@@ -24,6 +24,6 @@ Programingo the algorith for an automatic parking of an autonomous car.
 
 #### 4. [Amazon Warehouse]()
 
-#### 5. [Marker Based Visual Loc]()
+#### 5. [Marker Based Visual Loc](https://iperal2021.github.io/blog_robotica_servicios/Marker%20Based%20Visual%20Loc/)
 
 > The exercises will appear in this page as they are done

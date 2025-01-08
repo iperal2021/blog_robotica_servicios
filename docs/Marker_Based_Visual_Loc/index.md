@@ -1,6 +1,6 @@
 ---
 layout: default
-title: marked Loc
+title: Marked Based Viual Localization
 nav_exclude: false
 ---
 
