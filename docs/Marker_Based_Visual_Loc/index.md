@@ -49,7 +49,7 @@ For the *odom2tag* matrix I used the known coordinates given by the config file 
                         [np.sin(yaw), np.cos(yaw)]]
 ```
 
-For last I multiply both matrix to get as result the aproximated coordinates of the robot.To get the correct yaw value I use the same method as some classmates, calculating first the pitch and second the yaw:
+For last I multiply both matrix to get as result the aproximated coordinates of the robot.To get the correct yaw, after after trying several methods that did not work, I decided use the same one as some classmates, calculating first the pitch and second the yaw:
 
 ```python
     pitch = math.atan2(
