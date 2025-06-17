@@ -14,19 +14,12 @@ The algorithm chosed for this job is *BSA: Backtracking Spiral Algorithm*
 
 First thing I need is to relate the **3D** coordinates from *Gazebo* to the 2D map. The best way to do this is first work with the image, creating the grid I will use later. Once the grid is created by transform the array of the map into a matrix, I can start to get points.
 
-This was the fist Grid I created, but after a check of the documentation I saw that dimmension bigger than 1000x1000 may affect perfonmance, so I decided to resiz my matrix once I get it from the image.
+I decided to use the original size of the matrix because is more easy to work with it.
 
-* First matrix with dimensions 1012x1013:
+* Matrix with dimensions 1012x1012:
   
 <center>
     <img src="assets/img/grid_map.png" width="500" height="300">
-</center>
-
-* Second atemp with a dimension of 506x506
-> This value is the half rounded down of the original
-
-<center>
-    <img src="assets/img/grid_map_2.png" width="500" height="300">
 </center>
 
 To get the coordinates I need to calcule using this ecuation:
@@ -37,13 +30,12 @@ To get the coordinates I need to calcule using this ecuation:
 
 Now I have to get some points to calculate the different values. For the *scale* I can chose 2 points with the same coordinate X or Y and the get the **3D** pose.
 
-The grid is made with squares of 17x17 pixels, thanks to know this I can get a better approach. I chose the **3D** points (4.06, -1.05) and (2.70, -1.05). This two points are the **2D** points (85,153) and (153, 153). To get the *scale* I made the mean of the pair of coordinates. I get the follow:
+The grid is made of *30x30* squares, but it can be changed in the code. This allow to try other sizes or other maps, and adapt the solution to avoid obstacles. The data value used for the transformation matrix:
 
-* 1.36 meters of difference in the X **3D** coordinate
-* 68 pixels from the X **2D** coordinate
+* TX = 4.07 , TY = 5.65
+* SCALE = 101.7
 
-Now I can calculate the scale, wich has a value of 52 measures of the map are 1 meter on the simulation
-> All measurements has been aproached
+> All measurements has been aproached for the original map of this practice.
 
 Once I have all the data, I can use the ecuation to convert **2D** coordinates to the **3D**.
 
@@ -53,14 +45,10 @@ The next step is to start with the algorithm and the planning of the route. To s
 
 ```python
 def convert3Dto2D(x, y):
-  
-    rotation= np.array([ [-1, 0, 0, tx], [0, 1, 0, ty], [0, 0, 1, 0], [0, 0, 0, 1]])
-
-    coordinate = np.array([x, y, 0, 1])
-    
-    transformed_coord = np.dot(rotation, coordinate) * scale
-    
-    return transformed_coord
+    transformation = np.array([[0, 1, 0, TX], [-1, 0, 0, TY], [0, 0, 1, 0], [0, 0, 0, 1]])
+    real_pose = np.array([x, y, 0, 1])
+    map_2d_pose = np.dot(transformation, real_pose) * SCALE
+    return map_2d_pose[0], map_2d_pose[1]
 ```
 
 With the coordinate I can make the euclidean distance among my valid centers and the robot position and choose the nearest as the Initial cell.
@@ -79,33 +67,90 @@ Now that I have the first cell of the Gridmap, I can start the real planing of t
 The first aproach of the planning looks like this:
 
 <center>
-    <img src="assets/img/planing_first_attemp.png" width="600" height="350">
+    <img src="assets/img/new_grid_map_plus_planning.png" width="600" height="350">
 </center>
 
-The yellow cells are the ones wich represets the route. The blue ones are the returning points for the robot when there aren't valid moves but there're still points in the *valid_centers* list.
+The blue cells are the valid cells the robot can clean. The yellow ones are the returning points for the robot when there aren't valid moves but there're still points in the *valid_centers* list. Violet is the initial cell. When the robot visit a cell that one is painted green.
 
-To debug the map more easily, I paint mor squeres, red for critic points and orange for initial cell.
+To create a path between return_points and critic_points, I use the simpliest algorithm posible, **BFS**, wich is easy to implement in python.
+
+```python
+def bfs_path(actual_point, next_point, point_list):
+    if actual_point not in point_list or next_point not in point_list:
+        return None, None
+
+    visited = set()
+    frontier = [actual_point]
+    parent = {actual_point: None}
+    yaw_from = {actual_point: None}
+
+    directions = [
+        ((-SQUARE_PIXELS, 0), -math.pi/2),  # Norte
+        ((0, SQUARE_PIXELS), -math.pi),     # Este
+        ((SQUARE_PIXELS, 0), math.pi/2),    # Sur
+        ((0, -SQUARE_PIXELS), 0.0)          # Oeste
+    ]
+
+    while frontier:
+        current = frontier.pop(0)
+
+        if current == next_point:
+
+            path = []
+            yaws = []
+            while current is not None:
+                path.append(current)
+                yaws.append(yaw_from[current])
+                current = parent[current]
+            return path[::-1], yaws[::-1]
+
+        visited.add(current)
+
+        for (dy, dx), yaw in directions:
+            neighbor = (current[0] + dy, current[1] + dx)
+            if neighbor in point_list and neighbor not in visited and neighbor not in frontier:
+                frontier.append(neighbor)
+                parent[neighbor] = current
+                yaw_from[neighbor] = yaw
+
+    return None, None
+```
+
+This function was created before the 'crate_route()' function, because of that, I had to make the algorithm to adapt to the function. This can be seen in the *return*, wich always has two arguments: path and the respective yaw of every cell.
 
 ### Movement
 
-Once I have the path I can start to implement the movement. To have a smooth aproach to the different cells I have to use a PD controler for both linear and angular velocity. The way I have chosen to implement the movement follows these steps:
+Once I have the path I can start to implement the movement. To have a smooth aproach to the different cells I have to use a PID controler for both linear and angular velocity. I choose to use the simpliest *FSM* posible with an initial state and two states that are *TURN* and *FORWARD*. The steps used in the navigation:
 
-1. I check if the route lenght is bigger than the lenght of my visited cells.
-2. If the next step is not a critic point, I move normaly depending on whether I have to turn or not.
-3. If the cell is a critic point, it have to go to the nearest return point.
-4. Once the robot is in the return point, the loop starts again.
-5. When all the cells ar visited the program is finished.
+1. I get the initial cell and the next one. I then go to *TURN* state.
+2. The robot is oriend to the next cell.
+3. Once oriented, the robot move forwrd to the cell.
+4. When the next_cell is reached (with a tolerance that can be changed), the the previous next cell become the current, and the next is taken from the path.
+5. If the next cell has a yaw different from the actual, the state change to *TURN* to orient the robot to the new cell.
+6. This loop continue untill all the path is visited.
+
 
 ### Errors
 
-I encounter various errors during the exercise. The most significant:
+I have corrected various errors from the previous version of the exercise. The most significant:
 
-* The size of the map and the cells. At first I used the original size of the map, wich generates problem with the scale.
+* The size of the map and the cells. In the old version I resized the map, but in this one I decided to use it at original size.
 
-* Transform matrix. I was unable to get the correct transformation matrix all over the exercise. At the time of start to move, the *3D* to *2D* coordinates didn't grow and decrease as expected. Due to this, the robot never gets to the next cell.
+* Transform matrix. I was unable to get the correct transformation matrix all over the exercise. At the time of start to move, the *3D* to *2D* coordinates didn't grow and decrease as expected. Due to this, the robot did never arived to the next cell.
 
-* During the phase of debuging the map, the initial cell sometimes didn't get painted.
-  
-<center>
-    <img src="assets/img/new_map.png" width="600" height="350">
-</center>
+* During the phase of debuging the map, the initial cell sometimes didn't get painted, this was becaus the transformation of 3D to 2D that was incorrect.
+
+* The movement was incorrect. Now It use PID for linear and angular. In the previous version this was made it in separated function, but now is in the main loop (a good practice would be make this in functions again)
+
+### Execution
+
+I recomend to watch the videos in x1.5 or x2 speed. DUe to my computer specifications, is not enough powerful and sometimes the docker stop the execution of the exercise. I tried to record the longer execution posible.
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/9EDrTPV2Vxs/0.jpg)](https://youtu.be/9EDrTPV2Vxs "BSA execution")
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/jYdHnbh1gPA/0.jpg)](https://youtu.be/jYdHnbh1gPA "BSA execution 2")
+
+
+> Youtube URL if not displayed: [https://youtu.be/9EDrTPV2Vxs](https://youtu.be/9EDrTPV2Vxs)
+
+> Youtube URL if not displayed: [https://youtu.be/jYdHnbh1gPA](https://youtu.be/jYdHnbh1gPA)
