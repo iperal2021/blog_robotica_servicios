@@ -70,6 +70,44 @@ After facing several errors and problems, I have managed to implement a solution
     <img src="assets/img/three_shelves.png" width="500" height="300">
 </center>
 
+The shelves coordinates, the destination of them, the number of shelves, their geometry, and robot and map specifications can be changed in the code using the following variables:
+
+```python
+SCALE_X = 20.5147       # Píxeles por metro en X
+SCALE_Y = 20.1261       # Píxeles por metro en Y
+TX = 6.8                # Traslación en X
+TY = 10.31              # Traslación en Y
+ROBOT_WIDTH_M = 0.5     # Width robot (m)
+ROBOT_LENGTH_M = 0.5    # Length robot (m)
+ROBOT_WIDTH_PX = int(ROBOT_WIDTH_M * SCALE_X)           # Width robot (px)
+ROBOT_LENGTH_PX = int(ROBOT_LENGTH_M * SCALE_Y)         # Length robot (px)
+ROBOT_DIMENSIONS = (ROBOT_WIDTH_PX, ROBOT_LENGTH_PX)    # Dimension robot (px)
+SHELF_WIDTH = 0.4 * 1.5 # Width shelf (m)
+SHELF_LENGTH = 0.4 * 3  # Length shelf (m)
+SHELF_DIMENSION = (int(SHELF_WIDTH * SCALE_X) , int(SHELF_LENGTH * SCALE_Y)) # Dimension shelf (px)
+
+start_pos = [0, 0]
+OBJECTIVES = [
+    [0.4, 4.5],   # shelf 1  (y,x)
+    [-1.242, 4],  # shelf 2  (y,x)
+    [-3.039, 4],  # shelf 3  (y,x)
+    [-4.827, 4],  # shelf 4  (y,x)
+    [-6.781, 4],  # shelf 5  (y,x)
+    [-8.665, 4]   # shelf 6  (y,x)
+]
+
+FINAL_DESTINATION = [
+    [0, -2],        # shelf 1  (y,x)
+    [-1.2, -2],     # shelf 2  (y,x)
+    [-3, -2],       # shelf 3  (y,x)
+    [-5, -2],       # shelf 4  (y,x)
+    [0, -2],        # shelf 5  (y,x)
+    [0, -2]         # shelf 6  (y,x)
+]
+
+MAP_DIMENSIONS = [0, 0, 279, 415]
+```
+
 ## VIDEO
 
 * Execution without replaning or shelf:
