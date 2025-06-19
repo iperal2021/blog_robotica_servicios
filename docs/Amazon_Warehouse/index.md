@@ -30,6 +30,14 @@ Once the robot reaches the objetive it can start the second planing now with the
 
 ## VIDEO
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/#####/0.jpg)]("Amazon Werehouse")
+* Execution without replaning or shelf:
 
-> Youtube URL if not displayed: []()
+[![IMAGE ALT TEXT](http://img.youtube.com/wypbBwd2t1M.jpg)]("Amazon Werehouse")
+
+> Youtube URL if not displayed: [https://youtu.be/wypbBwd2t1M](https://youtu.be/wypbBwd2t1M)
+
+* First execution with shelf
+
+[![IMAGE ALT TEXT](http://img.youtube.com/viYEc3RShJj7A0.jpg)]("Amazon Werehouse")
+
+> Youtube URL if not displayed: [https://youtu.be/YEc3RShJj7A](https://youtu.be/YEc3RShJj7A)
