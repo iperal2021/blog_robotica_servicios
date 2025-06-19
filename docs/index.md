@@ -23,13 +23,20 @@ The second practice, with the goal of program a rescue drone wich have to check 
 
 #### 3. [Auto Parking](https://iperal2021.github.io/blog_robotica_servicios/Auto_Parking/)
 
-Programingo the algorith for an automatic parking of an autonomous car.
+Programing the algorith for an automatic parking of an autonomous car.
 
-#### 4. [Amazon Warehouse]()
+#### 4. [Amazon Warehouse](https://iperal2021.github.io/blog_robotica_servicios/Amazon_Warehouse/)
+
+For the forth practice the goal is to learn how to use the **[OMPL](https://ompl.kavrakilab.org/)**
 
 #### 5. [Marker Based Visual Loc](https://iperal2021.github.io/blog_robotica_servicios/Marker%20Based%20Visual%20Loc/)
 
 #### 6. OLD or FAILED practice
 
 *[1. localized vaccum cleaner](https://iperal2021.github.io/blog_robotica_servicios/Localized_Vacuum_Cleaner_OLD/)*
+
+*[4. amazon_warehouse](https://iperal2021.github.io/blog_robotica_servicios/Amazon_Warehouse/)*
+
+
 > The exercises will appear in this page as they are done
+
