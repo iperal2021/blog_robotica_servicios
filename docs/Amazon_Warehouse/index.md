@@ -20,6 +20,13 @@ Using the example from the documentation I can try to define the start point and
 
 ## PLAN EXECUTION
 
+Once the path is complete the robot can start moving. For a good navigation I implemented a PID control over angular and linear speed. I use a simple *finite state machine* that use three states:
+
+1. INIT: variables are initialized.
+2. TURN: robot turn until it reaches the correct yaw. Only angular speed.
+3. FORWARD: to move forward. In this state is controled both angular and linear speed.
+
+Once the robot reaches the objetive it can start the second planing now with the shelf geometry. It uses the same movement.
 
 ## VIDEO
 

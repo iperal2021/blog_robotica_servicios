@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Localized Vacuum Cleaner
+title: OLD Localized Vacuum Cleaner
 nav_exclude: false
 ---
 
